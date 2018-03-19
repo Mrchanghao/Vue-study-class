@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { stat } from 'fs';
 
 Vue.use(Vuex)
 
@@ -11,13 +12,16 @@ export default new Vuex.Store({
     },
     mutations: {
         GET_TODO(state, todo){
-            state.newTodo =  todo
+            if(this.todo !== '') {
+                state.newTodo =  todo
+            }
         },
         ADD_TODO(state){
             state.todos.push({
                 body: state.newTodo,
                 completed: false
             })
+            localStorage.setItem('newTodo', state.newTodo)
         },
         EDIT_TODO(state, todo){
             var todos = state.todos
@@ -28,6 +32,8 @@ export default new Vuex.Store({
         REMOVE_TODO(state, todo){
             var todos = state.todos
             todos.splice(todos.indexOf(todo), 1)
+           localStorage.removeItem('newTodo');
+        //    localStorage remove 할때 key 이름은 파라미터로 전달 --> setItem으로 지정한 key값
             
         },
         COMPLETE_TODO(state, todo){
@@ -35,7 +41,11 @@ export default new Vuex.Store({
             
         },
         CLEAR_TODO(state){
-            state.newTodo = ''
+            state.newTodo = '';
+        },
+        CLEAR_ALL(state) {
+            state.todos = [];
+            localStorage.clear();
         }
     },
     actions: {
@@ -56,6 +66,9 @@ export default new Vuex.Store({
         },
         clearTodo({commit}){
             commit('CLEAR_TODO')
+        },
+        clearAll({commit}) {
+            commit('CLEAR_ALL');
         }
 
     },

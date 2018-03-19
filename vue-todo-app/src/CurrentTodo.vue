@@ -5,7 +5,7 @@
           <li class="list-group-item"  :key="i" v-for="(todo, i) in todos">
               <div class="todo-list">{{todo.body}}</div>
               <div class="btn-group">
-                  <button type="button" class="btn" @click="edit(todo)">EDIT</button>
+                  
                   <button type="button" class="btn-completed btn" @click="completed(todo)">COMPLETED</button>
                   <button type="button" class="btn-delete btn" @click="remove(todo)">DELETE</button>
               </div>
@@ -24,9 +24,6 @@ export default {
         }
     },
     methods: {
-        edit(todo) {
-            this.$store.dispatch('editTodo', todo)
-        },
         completed(todo) {
             this.$store.dispatch('completeTodo', todo)
         },
@@ -46,6 +43,7 @@ h3 {
     /* flex-direction: column; */
     justify-content: space-around;
     margin-top: 2rem;
+    border: 1px solid;
 }
 .completed {
     text-decoration: line-through;

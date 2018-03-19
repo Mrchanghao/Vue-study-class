@@ -29,10 +29,15 @@ export default {
 * {
     box-sizing: border-box;
 }
+#get-todo {
+    margin-left: 2rem;
+    padding-left: 1rem;
+}
 input {
     width: 70%;
     height: 2rem;
     padding: 0.3rem;
+    /* margin-left: 1rem; */
 }
 button {
     width: 20%;

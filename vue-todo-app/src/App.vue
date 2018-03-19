@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-      <GetTodo></GetTodo>
+      <GetTodo class="input"></GetTodo>
       <current-todo></current-todo>
       <CompletedTodo></CompletedTodo>
+      <button class="btn-delete clear-all btn" @click="clearAll">CLEARALL</button>
   </div>
 </template>
 
@@ -17,6 +18,11 @@ export default {
     GetTodo,
     CurrentTodo,
     CompletedTodo
+  },
+  methods: {
+    clearAll() {
+      this.$store.dispatch('clearAll')
+    }
   }
   
 }
@@ -29,5 +35,18 @@ body {
  margin: 5rem auto;
  background: #005aa7;
  color: white;
+}
+.input {
+  /* transform: translateX(50%); */
+}
+.clear-all {
+  border: 2px solid;
+  padding: 10px;
+  margin-top: 20px;
+  /* margin: 0 auto; */
+  /* display: block; */
+  width: 200px;
+  height: 60px;
+  transform: translate(60%, 50%);
 }
 </style>

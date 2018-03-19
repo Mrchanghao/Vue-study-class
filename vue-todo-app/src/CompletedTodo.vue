@@ -37,5 +37,6 @@ h3 {
     /* flex-direction: column; */
     justify-content: space-around;
     margin-top: 2rem;
+    border: 1px solid;
 }
 </style>
